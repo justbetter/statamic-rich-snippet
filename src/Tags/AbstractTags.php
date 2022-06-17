@@ -11,6 +11,7 @@
 
 namespace OptimoApps\RichSnippet\Tags;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Spatie\SchemaOrg\Graph;
 use Spatie\SchemaOrg\Schema;
@@ -74,6 +75,10 @@ abstract class AbstractTags extends Tags
         if ($this->isSchemaEnabled()) {
             $schema = $this->getSchemaData('blog_schema');
 
+            if ($schema->isEmpty()) {
+                return null;
+            }
+
             return Schema::blogPosting()
                 ->headline($schema->get('headline'))
                 ->alternativeHeadline($schema->get('alternativeHeadline'))
@@ -107,6 +112,10 @@ abstract class AbstractTags extends Tags
     {
         if ($this->isSchemaEnabled()) {
             $schema = $this->getSchemaData('article_schema');
+
+            if ($schema->isEmpty()) {
+                return null;
+            }
 
             return Schema::article()
                 ->headline($schema->get('headline'))
@@ -142,6 +151,10 @@ abstract class AbstractTags extends Tags
         if ($this->isSchemaEnabled()) {
             $schema = $this->getSchemaData('news_schema');
 
+            if ($schema->isEmpty()) {
+                return null;
+            }
+
             return Schema::newsArticle()
                 ->headline($schema->get('headline'))
                 ->image($this->processImage($schema->get('image')))
@@ -176,6 +189,48 @@ abstract class AbstractTags extends Tags
         }
 
         return null;
+    }
+
+    protected function getJobPostingSchema(): ?string
+    {
+        if (! $this->isSchemaEnabled()) {
+            return null;
+        }
+
+        $schema = $this->getSchemaData('job_posting');
+
+        if ($schema->isEmpty()) {
+            return null;
+        }
+
+        return Schema::jobPosting()
+            ->title($schema->get('title'))
+            ->description($schema->get('description'))
+            ->hiringOrganization(
+                Schema::organization()->name($this->getOrganization()->get('name'))
+                    ->url($this->getOrganization()->get('url'))
+                    ->logo($this->getOrganization()->get('logo'))
+                    ->address($this->getOrganization()->get('address'))
+                    ->contactPoint($this->getOrganization()->get('contactPoint'))
+            )
+            ->identifier($this->getOrganization()->get('name'))
+            ->employmentType($schema->get('employment_type'))
+            ->datePosted($schema->get('date_posted'))
+            ->validThrough(Carbon::createFromFormat('Y-m-d', '0001-01-01'))
+            ->jobLocation(
+                Schema::place()
+                    ->name($this->getOrganization()->get('name'))
+                    ->url($this->getOrganization()->get('url'))
+                    ->logo($this->getOrganization()->get('logo'))
+                    ->address($this->getOrganization()->get('address'))
+            )
+            ->baseSalary(
+                Schema::monetaryAmount()
+                ->currency('EUR')
+                ->minValue((float) $schema->get('min_base_salary'))
+                ->maxValue((float) $schema->get('max_base_salary'))
+            )
+            ->toScript();
     }
 
     /**

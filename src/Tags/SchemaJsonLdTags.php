@@ -23,6 +23,7 @@ class SchemaJsonLdTags extends AbstractTags
             'blogpost_schema' => $this->getBlogPostSchema(),
             'news_article_schema' => $this->getNewsArticleSchema(),
             'organization_schema' => $this->getOrganizationSchema(),
+            'job_posting' => $this->getJobPostingSchema(),
         ]);
     }
 }

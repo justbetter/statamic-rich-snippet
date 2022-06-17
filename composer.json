@@ -29,8 +29,8 @@
     }
   ],
   "require": {
-    "php": "^8.0",
-    "spatie/schema-org": "^3.11",
+    "php": "^7.4|^8.0",
+    "spatie/schema-org": "^3.8",
     "statamic/cms": "^3.0.14"
   },
   "require-dev": {

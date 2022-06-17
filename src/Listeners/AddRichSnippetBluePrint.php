@@ -31,12 +31,12 @@ class AddRichSnippetBluePrint
             $event->blueprint->ensureField('schema_type', [
                 'type' => 'select',
                 'display' => 'Select Type',
-                'validate' => 'required',
                 'placeholder' => 'Choose Schema Type',
                 'options' => [
                     SchemaTypeEnum::ARTICLE => 'Article',
                     SchemaTypeEnum::BLOG_POSTING => 'Blog Posting',
                     SchemaTypeEnum::NEWS_ARTICLE => 'News Article',
+                    SchemaTypeEnum::JOB_POSTING => 'Job Posting',
                 ],
             ], 'Schema.org');
 
@@ -59,6 +59,13 @@ class AddRichSnippetBluePrint
              */
             $event->blueprint->ensureField('news_schema', ['type' => 'news_schema', 'listable' => false, 'if' => [
                 'schema_type' => 'equals NewsArticle',
+            ]], __('Schema.org'));
+
+            /*
+             *  NewsArticle Schema FieldType
+             */
+            $event->blueprint->ensureField('job_posting', ['type' => 'job_posting', 'listable' => false, 'if' => [
+                'schema_type' => 'equals JobPosting',
             ]], __('Schema.org'));
         }
     }

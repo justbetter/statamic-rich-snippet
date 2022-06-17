@@ -9,12 +9,17 @@
  *
  */
 
-namespace OptimoApps\RichSnippet;
+namespace OptimoApps\RichSnippet\Tags;
 
-final class SchemaTypeEnum
+class JobPostingTags extends BlogPostTags
 {
-    public const ARTICLE = 'Article';
-    public const BLOG_POSTING = 'BlogPosting';
-    public const NEWS_ARTICLE = 'NewsArticle';
-    public const JOB_POSTING = 'JobPosting';
+    protected static $handle = 'job_posting';
+
+    /**
+     * @return string|null
+     */
+    public function index(): ?string
+    {
+        return $this->getJobPostingSchema();
+    }
 }

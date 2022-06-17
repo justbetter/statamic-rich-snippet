@@ -44,7 +44,14 @@ return [
         'date_modified' => 'Date Modified',
         'author' => 'Author',
         'author_placeholder' => 'Enter your/author name'
-
+    ],
+    'job' => [
+        'title' => 'Title',
+        'description' => 'Description',
+        'employment_type' => 'Employment Type',
+        'date_posted' => 'Date Posted',
+        'min_base_salary' => 'Min Base Salary',
+        'max_base_salary' => 'Max Base Salary',
     ],
     'org' => [
         'header' => 'Organization',

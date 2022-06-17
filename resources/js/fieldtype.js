@@ -8,12 +8,11 @@
  *
  */
 
-import ArticleSchema from './components/article_schema-fieldtype';
-import BlogSchema from './components/blog_schema-fieldtype';
-import NewsSchema from './components/news_schema-fieldtype';
+import Schema from './components/schema';
 
 Statamic.booting(() => {
-    Statamic.$components.register('article_schema-fieldtype', ArticleSchema);
-    Statamic.$components.register('blog_schema-fieldtype', BlogSchema);
-    Statamic.$components.register('news_schema-fieldtype', NewsSchema);
+    Statamic.$components.register('article_schema-fieldtype', Schema);
+    Statamic.$components.register('blog_schema-fieldtype', Schema);
+    Statamic.$components.register('news_schema-fieldtype', Schema);
+    Statamic.$components.register('job_posting-fieldtype', Schema);
 });

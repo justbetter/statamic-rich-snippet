@@ -315,4 +315,55 @@ class Fields
             ],
         ];
     }
+
+    public static function getJobPostingFields(Entry $entry): array
+    {
+        return [
+            [
+                'handle' => 'title',
+                'field' => [
+                    'type' => 'text',
+                    'display' => __('statamic-rich-snippet::fieldtypes.job.title'),
+                    'default' => $entry->data()->get('title', ''),
+                ],
+            ],
+            [
+                'handle' => 'description',
+                'field' => [
+                    'type' => 'textarea',
+                    'display' => __('statamic-rich-snippet::fieldtypes.job.description'),
+                ],
+            ],
+            [
+                'handle' => 'employment_type',
+                'field' => [
+                    'type' => 'text',
+                    'display' => __('statamic-rich-snippet::fieldtypes.job.employment_type'),
+                ],
+            ],
+            [
+                'handle' => 'min_base_salary',
+                'field' => [
+                    'type' => 'integer',
+                    'display' => __('statamic-rich-snippet::fieldtypes.job.min_base_salary'),
+                ],
+            ],
+            [
+                'handle' => 'max_base_salary',
+                'field' => [
+                    'type' => 'integer',
+                    'display' => __('statamic-rich-snippet::fieldtypes.job.max_base_salary'),
+                ],
+            ],
+            [
+                'handle' => 'date_posted',
+                'field' => [
+                    'type' => 'text',
+                    'display' => __('statamic-rich-snippet::fieldtypes.job.date_posted'),
+                    'default' => is_null($entry) ? now()->format('Y-m-d') : $entry->date()->format('Y-m-d'),
+                    'read_only' => true,
+                ],
+            ],
+        ];
+    }
 }

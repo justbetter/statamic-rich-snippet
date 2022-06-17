@@ -18,12 +18,17 @@ use Statamic\Facades\Markdown;
 if (! function_exists('generateHtml')) {
     function generateHtml($content)
     {
+        if (! $content) {
+            return null;
+        }
+
         if (is_array($content)) {
             return (new Renderer())->render([
                 'type' => 'doc',
                 'content' => $content,
             ]);
         }
+
         if (Markdown::hasParser($content)) {
             return Markdown::parser($content);
         }
