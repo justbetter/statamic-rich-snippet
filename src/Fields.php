@@ -48,7 +48,6 @@ class Fields
                 'field' => [
                     'type' => 'textarea',
                     'display' => __('statamic-rich-snippet::fieldtypes.news.description'),
-                    'default' => is_null($entry) ? '' : strip_tags(Str::limit(generateHtml($entry->data()->get('content')), 200)),
                 ],
             ],
             [
@@ -146,7 +145,6 @@ class Fields
                     'type' => 'textarea',
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.description'),
                     'instructions' => __('statamic-rich-snippet::fieldtypes.blog.description_instruct'),
-                    'default' => is_null($entry) ? '' : strip_tags(Str::limit(generateHtml($entry->data()->get('content')), 200)),
                 ],
             ],
             [
@@ -155,7 +153,6 @@ class Fields
                     'type' => 'textarea',
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.article_body'),
                     'instructions' => __('statamic-rich-snippet::fieldtypes.blog.article_body_instruct'),
-                    'default' => is_null($entry) ? '' : strip_tags(generateHtml($entry->data()->get('content'))),
                 ],
             ],
             [
@@ -192,7 +189,6 @@ class Fields
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.word_count'),
                     'instructions' => __('statamic-rich-snippet::fieldtypes.blog.word_count_instruct'),
-                    'default' => is_null($entry) ? 0 : str_word_count(generateHtml($entry->data()->get('content'))),
                     'validate' => 'numeric',
                 ],
             ],
