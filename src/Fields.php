@@ -75,7 +75,7 @@ class Fields
                 'field' => [
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.news.date_published'),
-                    'default' => is_null($entry) ? now()->format('Y-m-d') : $entry->date()->format('Y-m-d'),
+                    'default' => is_null($entry) ? now()->format('Y-m-d') : $entry->date()?->format('Y-m-d'),
                     'read_only' => true,
                 ],
             ],
@@ -84,7 +84,7 @@ class Fields
                 'field' => [
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.news.date_modified'),
-                    'default' => is_null($entry) ? now()->format('Y-m-d') : $entry->lastModified()->format('Y-m-d'),
+                    'default' => is_null($entry) ? now()->format('Y-m-d') : $entry->lastModified()?->format('Y-m-d'),
                     'read_only' => true,
                 ],
             ],
@@ -197,7 +197,7 @@ class Fields
                 'field' => [
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.date_published'),
-                    'default' => is_null($entry) ? now()->format('Y-m-d') : $entry->date()->format('Y-m-d'),
+                    'default' => is_null($entry) ? now()->format('Y-m-d') : $entry->date()?->format('Y-m-d'),
                     'read_only' => true,
                 ],
             ],
@@ -206,7 +206,7 @@ class Fields
                 'field' => [
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.blog.date_modified'),
-                    'default' => is_null($entry) ? now()->format('Y-m-d') : $entry->lastModified()->format('Y-m-d'),
+                    'default' => is_null($entry) ? now()->format('Y-m-d') : $entry->lastModified()?->format('Y-m-d'),
                     'read_only' => true,
                 ],
             ],
@@ -356,7 +356,7 @@ class Fields
                 'field' => [
                     'type' => 'text',
                     'display' => __('statamic-rich-snippet::fieldtypes.job.date_posted'),
-                    'default' => is_null($entry) ? now()->format('Y-m-d') : $entry->date()->format('Y-m-d'),
+                    'default' => is_null($entry) ? now()->format('Y-m-d') : $entry->date()?->format('Y-m-d'),
                     'read_only' => true,
                 ],
             ],
