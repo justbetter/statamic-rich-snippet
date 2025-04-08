@@ -17,12 +17,15 @@ use Statamic\Facades\Markdown;
 if (! function_exists('generateHtml')) {
   function generateHtml($content)
   {
+    $content = $content ?: [];
+
     if (is_array($content)) {
       return  (new \Tiptap\Editor)->setContent([
         'type' => 'doc',
         'content' => $content,
       ])->getHTML();
     }
+
     if (Markdown::hasParser($content)) {
       return Markdown::parser($content);
     }
