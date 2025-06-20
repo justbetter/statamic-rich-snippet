@@ -9,7 +9,7 @@
  *
  */
 
-Route::middleware('web')->group(function () {
+Route::group(['middleware' => ['statamic.cp.authenticated'], 'namespace' => 'OptimoApps\RichSnippet\Http\Controllers'], function () {
     Route::get('/optimoapps/richsnippet/', 'RichSnippetController@index')->name('optimoapps.rich-snippet.index');
     Route::post('/optimoapps/richsnippet/', 'RichSnippetController@update')->name('optimoapps.rich-snippet.update');
 });
